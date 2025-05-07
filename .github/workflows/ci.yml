@@ -1,0 +1,25 @@
+name: CI DevOps Axel
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v3
+
+    - name: Instalar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Ejecutar test simple
+      run: |
+        echo "console.log('Test ejecutado por GitHub Actions');" > test.js
+        node test.js
